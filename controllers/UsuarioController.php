@@ -15,6 +15,9 @@ class UsuarioController{
 
     public function saveUser(){
         if(isset($_POST)){
+            $_POST['name'] = trim($_POST['name']);
+            $_POST['surnames'] = trim($_POST['surnames']);
+            $_POST['email'] = trim($_POST['email']);
 
             //VALIDAR CAMPOS
             $isVallid = GUMP::is_valid($_POST, [
@@ -28,7 +31,7 @@ class UsuarioController{
                 'email' => ['required' => 'Ingrese un correo electronico', 'valid_email' => 'Inserte un correo valido'],
                 'password' => ['required' => 'Ingrese una contraseña']
             ]);
-            if($isVallid){
+            if($isVallid === true){
                 $user = new Usuario();
                 $user->setName($_POST['name']);
                 $user->setSurnames($_POST['surnames']);
@@ -40,7 +43,8 @@ class UsuarioController{
                     $_SESSION['register'] = 0;
                 }
             }else{
-                $_SESSION['register'] = $isVallid;
+                $_SESSION['error-user'] = $isVallid;
+                $_SESSION['register'] = 0;
             }
         }else{
             $_SESSION['register'] = 0;

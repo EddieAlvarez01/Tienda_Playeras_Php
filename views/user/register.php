@@ -2,14 +2,18 @@
 
 <?php if(isset($_SESSION['register'])): ?>
     <?php if($_SESSION['register']): ?>
-        <?php if($_SESSION)  ?>
-        <strong>Registro completado exitosamente</strong>
+        <strong class="alert-green">Registro completado exitosamente</strong>
     <?php else: ?>
-        <strong>Registro fallido</strong>
+        <strong class="alert-red">Registro fallido</strong>
     <?php endif; ?>
     <?php Utils::deleteSession('register'); ?>
 <?php endif; ?>
-
+<?php if(isset($_SESSION['error-user'])): ?>
+    <?php foreach ($_SESSION['error-user'] as $item): ?>
+    <br><strong class="alert-red"><?= $item ?></strong>
+    <?php endforeach; ?>
+    <?php Utils::deleteSession('error-user'); ?>
+<?php endif; ?>
 <form action="<?=base_url?>Usuario/saveUser" method="post">
     <label for="name">Nombre</label>
     <input type="text" name="name" required>
