@@ -103,4 +103,28 @@ class Usuario{
         return false;
     }
 
+    public function login($password){
+
+        //SQL PARA EL LOGIN
+        $sql = "SELECT u.id, r.nombre AS 'rol', u.nombre, u.apellidos, u.imagen, u.password  
+                FROM Usuario u
+                INNER JOIN Rol r ON u.rol_id = r.id
+                WHERE u.correo = '{$this->getEmail()}'";
+        $result = $this->db->query($sql);
+        if($result){
+            if($result->num_rows == 1){
+                $row = $result->fetch_assoc();
+                $verify = password_verify($password, $row['password']);
+                if($verify){
+                    $row['correo'] = $this->getEmail();
+                    unset($row['password']);
+                    return $row;
+                }
+            }
+            return 1;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return 2;
+    }
+
 }
