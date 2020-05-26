@@ -23,7 +23,7 @@
             <h3><?= $_SESSION['user']['nombre'] . ' ' . $_SESSION['user']['apellidos'] ?></h3>
             <ul>
                 <?php if($_SESSION['user']['rol'] == 'administrador'): ?>
-                    <li><a href="#">Gestionar categorías</a></li>
+                    <li><a href="<?= base_url ?>Categoria/index">Gestionar categorías</a></li>
                     <li><a href="#">Gestionar productos</a></li>
                     <li><a href="#">Gestionar pedidos</a></li>
                 <?php else: ?>

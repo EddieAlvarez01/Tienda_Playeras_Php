@@ -114,6 +114,7 @@ class Usuario{
         if($result){
             if($result->num_rows == 1){
                 $row = $result->fetch_assoc();
+                $row['id'] = (int) $row['id'];
                 $verify = password_verify($password, $row['password']);
                 if($verify){
                     $row['correo'] = $this->getEmail();
