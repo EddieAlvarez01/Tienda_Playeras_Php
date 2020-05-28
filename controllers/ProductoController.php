@@ -4,9 +4,11 @@ require_once 'models/Producto.php';
 class ProductoController{
 
     public function index(){
+        $product = new Producto();
+        $result = $product->getRandomProduct(6);
 
         //RENDERIZAR VISTA
-        require_once 'views/producto/destacados.php';
+        require_once 'views/producto/index.php';
     }
 
     public function manageProducts(){

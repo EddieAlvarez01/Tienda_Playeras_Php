@@ -224,4 +224,18 @@
         return false;
      }
 
+     //TRAER VARIOS PRODUCTOS DE MANERA ALEATORIA
+     public function getRandomProduct($columns){
+        $sql = "SELECT id, imagen, precio, nombre
+                FROM Producto
+                ORDER BY RAND()
+                LIMIT $columns";
+        $result = $this->db->query($sql);
+        if($result){
+            return $result;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+     }
+
  }
