@@ -24,7 +24,7 @@
             <ul>
                 <?php if($_SESSION['user']['rol'] == 'administrador'): ?>
                     <li><a href="<?= base_url ?>Categoria/index">Gestionar categorías</a></li>
-                    <li><a href="#">Gestionar productos</a></li>
+                    <li><a href="<?=base_url?>Producto/manageProducts">Gestionar productos</a></li>
                     <li><a href="#">Gestionar pedidos</a></li>
                 <?php else: ?>
                     <li><a href="#">Mis pedidos</a></li>

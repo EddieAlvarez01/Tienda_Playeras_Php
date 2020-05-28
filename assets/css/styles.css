@@ -178,11 +178,17 @@ td{
 }
 
 /*FORMULARIOS*/
+.form_container{
+    width: 50%;
+}
+
 label,
 input[type="text"],
 input[type="password"],
 input[type="email"],
-select{
+input[type="number"],
+select,
+textarea{
     display: block;
     width: 95%;
     margin-top: 2px;
@@ -192,7 +198,9 @@ select{
 input[type="text"],
 input[type="password"],
 input[type="email"],
-select{
+input[type="number"],
+select,
+textarea{
     border: 1px solid #C9C9C9;
     box-shadow: 0px 0px 2px #ccc inset;
     background: white;
@@ -226,7 +234,7 @@ button,
 
 .button{
     background: #33AE3D;
-    color: white;
+    color: white !important;
     text-decoration: none;
 }
 
@@ -235,6 +243,16 @@ button,
     text-align: center;
     margin-bottom: 20px;
     color: white !important;
+}
+
+.button-manage{
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button-red{
+    background: red;
+    border: 1px solid #CF1717;
 }
 
 label,
