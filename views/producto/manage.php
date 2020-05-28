@@ -7,6 +7,13 @@
             <strong class="alert-red">Error al eliminar producto</strong>
         <?php endif; ?>
         <?php Utils::deleteSession('delete-product'); ?>
+    <?php elseif(isset($_SESSION['edit-product'])): ?>
+        <?php if($_SESSION['edit-product']): ?>
+            <strong class="alert-green">Producto editado correctamente</strong>
+        <?php else: ?>
+            <strong class="alert-red">Error al editar producto</strong>
+        <?php endif; ?>
+        <?php Utils::deleteSession('edit-product'); ?>
     <?php endif; ?>
     <a class="button button-small" href="<?= base_url ?>Producto/createProduct">Crear Producto</a>
     <table>

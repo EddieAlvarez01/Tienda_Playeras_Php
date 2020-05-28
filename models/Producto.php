@@ -195,4 +195,33 @@
          return false;
      }
 
+     //TRAE UN SOLO PRODUCTO POR SU NUMERO DE ID
+     public function getProductById(){
+        $sql = "SELECT categoria_id, nombre, descripcion, precio, stock, oferta, imagen
+                FROM Producto
+                WHERE id = {$this->id}";
+        $result = $this->db->query($sql);
+        if($result){
+            if($result->num_rows == 1){
+                return $result->fetch_object();
+            }else{
+                return false;
+            }
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+     }
+
+     public function editProduct(){
+        $sql = "UPDATE Producto
+                SET categoria_id = {$this->category}, nombre = '{$this->name}', descripcion = '{$this->description}', precio = {$this->price}, stock = {$this->stock}, 
+                oferta = '{$this->offer}', imagen = '{$this->image}'
+                WHERE id = {$this->id}";
+        if($this->db->query($sql)){
+            return true;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+     }
+
  }
