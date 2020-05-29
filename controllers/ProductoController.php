@@ -150,6 +150,20 @@ class ProductoController{
         }
     }
 
+    public function productDetail(){
+        if(isset($_GET['id'])){
+            $product = new Producto();
+            $product->setId($_GET['id']);
+            $result = $product->getProductById();
+            if($result === false){
+                $_SESSION['error-detail-db'] = 1;
+            }
+            require_once 'views/producto/detail.php';
+        }else{
+            header('Location: ' . base_url . 'Producto/index');
+        }
+    }
+
     //VERIFICAR MIMETYPE PARA VALIDAR EXTENSION
     public function checkExtension($mimetype){
         if($mimetype == 'image/jpg' || $mimetype == 'image/jpeg' || $mimetype == 'image/png' || $mimetype == 'image/gif') {      //VERIFICAR MINETYPE PARA QUE SOLO PUEDA SUBIR IMAGENES

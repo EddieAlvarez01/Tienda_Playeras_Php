@@ -10,8 +10,10 @@
 <div class="product">
     <?php if($result->num_rows > 0): ?>
         <?php while($product = $result->fetch_object()): ?>
-            <img src="<?= ($product->imagen != '') ? base_url . 'uploads/images/' . $product->imagen : base_url . 'assets/img/camiseta.png'?>">
-            <h2><?=$product->nombre?></h2>
+            <a href="<?=base_url?>Producto/productDetail&id=<?=$product->id?>">
+                <img src="<?= ($product->imagen != '') ? base_url . 'uploads/images/' . $product->imagen : base_url . 'assets/img/camiseta.png'?>">
+                <h2><?=$product->nombre?></h2>
+            </a>
             <p>Q<?=$product->precio?></p>
             <a href="#" class="button">Comprar</a>
         <?php endwhile; ?>
