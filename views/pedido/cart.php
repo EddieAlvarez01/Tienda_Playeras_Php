@@ -19,7 +19,7 @@
     <br>
     <div class="total-cart">
         <h3>Precio total: Q<?= Utils::calculateTotal(); ?></h3>
-        <a class="button button-order">Hacer pedido</a>
+        <a href="<?=base_url?>Pedido/order" class="button button-order">Hacer pedido</a>
     </div>
 <?php else: ?>
     <p>No hay productos en el carrito</p>

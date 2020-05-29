@@ -3,10 +3,6 @@ require_once 'models/Producto.php';
 
 class PedidoController{
 
-    public function index(){
-        echo "Controlador pedidos accion index";
-    }
-
     //AÑADE AL CARRITO DE COMPRAS
     public function addCart(){
         Utils::isLogged();      //COMPRUEBA QUE HAY UNA SESIÓN INICIADA
@@ -59,6 +55,18 @@ class PedidoController{
             'unit' => 1,
             'product' => $product
         );
+    }
+
+    public function order(){
+        Utils::isLogged();
+        require_once 'views/pedido/order.php';
+    }
+
+    public function addOrder(){
+        Utils::isLogged();
+        if(isset($_POST)){
+            
+        }
     }
 
 }
