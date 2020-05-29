@@ -1,3 +1,7 @@
+<?php if(isset($_SESSION['error-logged'])): ?>
+    <strong class="alert-red">Inicie Sesión porfavor</strong>
+    <?php Utils::deleteSession('error-logged'); ?>
+<?php endif; ?>
 <?php if(isset($_GET['id'])): ?>
     <?php if(isset($_GET['cat'])): ?>
         <h1><?=$_GET['cat']?></h1>
@@ -15,7 +19,7 @@
                 <h2><?=$product->nombre?></h2>
             </a>
             <p>Q<?=$product->precio?></p>
-            <a href="#" class="button">Comprar</a>
+            <a href="<?=base_url?>Pedido/addCart&id=<?=$product->id?>" class="button">Comprar</a>
         <?php endwhile; ?>
     <?php else: ?>
         <?= 'No hay productos de la categoria' ?>

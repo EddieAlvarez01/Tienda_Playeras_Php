@@ -22,6 +22,15 @@ class Utils{
         header("Location: " . base_url);
     }
 
+    //COMPROBAR QUE UN USARIO ESTA LOGEADO
+    public static function isLogged(){
+        if(isset($_SESSION['user'])){
+            return 0;
+        }
+        $_SESSION['error-logged'] = 1;
+        header('Location: ' . base_url . 'Producto/index');
+    }
+
     public static function showCategories(){
         require_once 'models/Categoria.php';
         $category = new Categoria();
