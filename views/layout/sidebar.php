@@ -1,5 +1,15 @@
 <!-- BARRA LATERAL -->
 <aside id="lateral">
+    <?php if(isset($_SESSION['user'])): ?>
+        <div id="cart" class="block-aside">
+            <h3>Mi carrito</h3>
+            <ul>
+                <li><a href="<?=base_url?>Pedido/viewCart">Productos (<?= (isset($_SESSION['cart'])) ? count($_SESSION['cart']) : 0 ?>)</a></li>
+                <li><a href="<?=base_url?>Pedido/viewCart">Total: Q<?=Utils::calculateTotal();?></a></li>
+                <li><a href="<?=base_url?>Pedido/viewCart">Ver carrito</a></li>
+            </ul>
+        </div>
+    <?php endif; ?>
     <div id="login" class="block-aside">
         <?php if(isset($_SESSION['error-login'])): ?>
             <?php foreach($_SESSION['error-login'] as $item): ?>
@@ -19,6 +29,9 @@
                 <input type="password" name="password" required>
                 <input type="submit" value="Enviar">
             </form>
+            <ul>
+                <li><a href="<?=base_url?>Usuario/register">Registrarse</a></li>
+            </ul>
         <?php else: ?>
             <h3><?= $_SESSION['user']['nombre'] . ' ' . $_SESSION['user']['apellidos'] ?></h3>
             <ul>

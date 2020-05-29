@@ -322,6 +322,10 @@ button{
     margin-bottom: 10px;
 }
 
+.img-cart{
+    height: 80px;
+}
+
 #detail-product{
     width: 100%;
 }
@@ -370,3 +374,19 @@ button{
     border-bottom: 4px solid #01B1EA;
 }
 
+/*CARRITO*/
+.total-cart{
+    width: 350px;
+    float: right;
+}
+
+.total-cart h3{
+    display: block;
+    float: left;
+}
+
+.button-order{
+    display: block;
+    float: right;
+    width: 100px;
+}

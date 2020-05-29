@@ -37,4 +37,16 @@ class Utils{
         return $category->getAllCategories();
     }
 
+    //TOTAL A PAGAR DEL CARRITO DE COMPRAS
+    public static function calculateTotal(){
+        if(isset($_SESSION['cart'])){
+            $total = 0;
+            foreach($_SESSION['cart'] as $item){
+                $total += number_format($item['price'], 2) * $item['unit'];
+            }
+            return $total;
+        }
+        return 0;
+    }
+
 }

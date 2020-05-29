@@ -89,6 +89,9 @@ class UsuarioController{
 
     public function logout(){
         Utils::deleteSession('user');
+        if(isset($_SESSION['cart'])){
+            Utils::deleteSession('cart');
+        }
         header("Location: " . base_url);
     }
 
