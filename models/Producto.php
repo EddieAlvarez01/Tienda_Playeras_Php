@@ -238,4 +238,16 @@
         return false;
      }
 
+     public function  getProductByCategory($category){
+        $sql = "SELECT id, imagen, precio, nombre
+                FROM Producto
+                WHERE categoria_id = $category";
+        $result = $this->db->query($sql);
+        if($result){
+            return $result;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+     }
+
  }

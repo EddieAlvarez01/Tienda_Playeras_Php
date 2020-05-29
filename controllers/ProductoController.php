@@ -11,6 +11,16 @@ class ProductoController{
         require_once 'views/producto/index.php';
     }
 
+    public function listByCategory(){
+        if(isset($_GET['id'])){
+            $product = new Producto();
+            $result = $product->getProductByCategory($_GET['id']);
+            require_once 'views/producto/index.php';
+        }else{
+            header("Location: " . base_url . 'Producto/index');
+        }
+    }
+
     public function manageProducts(){
         Utils::isAdmin();
         $product = new Producto();

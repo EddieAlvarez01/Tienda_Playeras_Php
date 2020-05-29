@@ -26,7 +26,7 @@
                     </li>
                     <?php while($category = $categories->fetch_object()): ?>
                         <li>
-                            <a href="#"><?= $category->nombre ?></a>
+                            <a href="<?=base_url?>Producto/listByCategory&id=<?=$category->id?>&cat=<?= $category->nombre ?>"><?= $category->nombre ?></a>
                         </li>
                     <?php endwhile; ?>
                 </ul>
