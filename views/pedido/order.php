@@ -11,7 +11,5 @@
     <input type="text" name="location" required>
     <label for="address">Dirección:</label>
     <input type="text" name="address" required>
-    <label for="province">Provincia:</label>
-    <input type="text" name="province" required>
     <input type="submit" value="Confirmar">
 </form>

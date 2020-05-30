@@ -22,6 +22,6 @@
             <a href="<?=base_url?>Pedido/addCart&id=<?=$product->id?>" class="button">Comprar</a>
         <?php endwhile; ?>
     <?php else: ?>
-        <?= 'No hay productos de la categoria' ?>
+        <?= 'No hay productos para mostrar' ?>
     <?php endif; ?>
 </div>

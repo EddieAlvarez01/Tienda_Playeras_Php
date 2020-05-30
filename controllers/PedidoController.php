@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Producto.php';
+require_once 'models/Pedido.php';
 
 class PedidoController{
 
@@ -65,7 +66,46 @@ class PedidoController{
     public function addOrder(){
         Utils::isLogged();
         if(isset($_POST)){
-            
+            $_POST['province'] = trim($_POST['province']);
+            $_POST['location'] = trim($_POST['location']);
+            $_POST['address'] = trim($_POST['address']);
+            $isValid = GUMP::is_valid($_POST, [
+                'province' => 'required',
+                'location' => 'required',
+                'address' => 'required'
+            ], [
+                'province' => ['required' => 'Inserte una provincia'],
+                'location' => ['required' => 'Inserte una ciudad o localidad'],
+                'address' => ['required' => 'Inserte una dirección']
+            ]);
+            if($isValid === true){
+                $order = new Pedido();
+                $order->setUser($_SESSION['user']['id']);
+                $order->setProvince($_POST['province']);
+                $order->setLocation($_POST['location']);
+                $order->setAddress($_POST['address']);
+                $order->setCost(Utils::calculateTotal());
+                $order->setState('confirm');
+                if($order->saveOrder()){
+                    $_SESSION['save-order'] = 1;
+                }else{
+                    $_SESSION['save-order'] = 0;
+                }
+                header('Location: ' . base_url . 'Pedido/confirmOrder&id=' . $order->getId());
+            }else{
+                $_SESSION['error-order'] = $isValid;
+                header('Location: ' . base_url . 'Pedido/order');
+                die();
+            }
+        }
+    }
+
+    public function confirmOrder(){
+        Utils::isLogged();
+        if(isset($_SESSION['save-order']) && isset($_GET['id'])){
+            require_once 'views/pedido/confirm.php';
+        }else{
+            header('Location: ' . base_url . 'Pedido/viewCart');
         }
     }
 
