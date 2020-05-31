@@ -6,6 +6,6 @@ _Pequeño proyecto para practicar php orientado a objetos_
 * [MySQL](https://www.mysql.com/) - Base de datos
 * HTML 5 - Estructura de las páginas
 * CSS3 - Maquetado de las paginas
-* Servidor Local con Lampp
+* Servidor Local con Lampp - Apache
 * SO: [Linux Mint 19](https://linuxmint.com/)
 * Patron de diseño: MVC
