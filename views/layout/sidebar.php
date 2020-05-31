@@ -38,9 +38,9 @@
                 <?php if($_SESSION['user']['rol'] == 'administrador'): ?>
                     <li><a href="<?= base_url ?>Categoria/index">Gestionar categorías</a></li>
                     <li><a href="<?=base_url?>Producto/manageProducts">Gestionar productos</a></li>
-                    <li><a href="#">Gestionar pedidos</a></li>
+                    <li><a href="<?=base_url?>Pedido/orderManagement">Gestionar pedidos</a></li>
                 <?php else: ?>
-                    <li><a href="#">Mis pedidos</a></li>
+                    <li><a href="<?=base_url?>Pedido/myOrders">Mis pedidos</a></li>
                 <?php endif; ?>
                 <li><a href="<?= base_url ?>Usuario/logout">Cerrar sesión</a></li>
             </ul>

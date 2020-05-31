@@ -109,4 +109,56 @@ class PedidoController{
         }
     }
 
+    public function myOrders(){
+        Utils::isLogged();
+        $order = new Pedido();
+        $order->setUser($_SESSION['user']['id']);
+        $result = $order->getAllOrdersByUser();
+        require_once 'views/pedido/myOrders.php';
+    }
+
+    public function orderDetail(){
+        Utils::isLogged();
+        if(isset($_GET['id'])){
+            $order = new Pedido();
+            $order->setId($_GET['id']);
+            $rOrder = $order->getOrderById();
+            if($rOrder){
+                $rOrder = $rOrder->fetch_object();
+                $result = $order->getProductsByOrder();
+                if($result){
+                    require_once 'views/pedido/orderDetail.php';
+                    return;
+                }
+            }
+            header('Location: ' . base_url . 'Pedido/myOrders');
+        }else{
+            header('Location: ' . base_url . 'Pedido/myOrders');
+        }
+    }
+
+    public function orderManagement(){
+        Utils::isAdmin();
+        $order = new Pedido();
+        $result = $order->getAllOrders();
+        require_once 'views/pedido/myOrders.php';
+    }
+
+    public function changeState(){
+        Utils::isAdmin();
+        if(isset($_POST['state'])){
+            if(isset($_GET['id'])){
+                $order = new Pedido();
+                $order->setId($_GET['id']);
+                $order->setState($_POST['state']);
+                if($order->updateStateOrder()){
+                    $_SESSION['update-order'] = 1;
+                }else{
+                    $_SESSION['update-order'] = 0;
+                }
+            }
+            header('Location: ' . base_url . 'Pedido/orderManagement');
+        }
+    }
+
 }

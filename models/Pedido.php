@@ -181,4 +181,63 @@ class Pedido{
         return false;
     }
 
+    public function getAllOrdersByUser(){
+        $sql = "SELECT id, provincia, localidad, direccion, coste, estado, DATE_FORMAT(fecha, '%d/%m/%Y') AS 'fecha'
+                FROM Pedido
+                WHERE usuario_id = {$this->user}";
+        $result = $this->db->query($sql);
+        if($result){
+            return $result;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+    }
+
+    public function getOrderById(){
+        $sql = "SELECT coste, provincia, localidad, direccion, estado
+                FROM Pedido
+                WHERE id = {$this->id}";
+        $result = $this->db->query($sql);
+        if($result){
+            return $result;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+    }
+
+    public function getProductsByOrder(){
+        $sql = "SELECT p.nombre, p.precio, dp.cantidad
+                FROM Detalle_Pedido dp
+                INNER JOIN Producto p ON dp.producto_id = p.id
+                WHERE pedido_id = {$this->id}";
+        $result = $this->db->query($sql);
+        if($result){
+            return $result;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+    }
+
+    public function getAllOrders(){
+        $sql = "SELECT id, provincia, localidad, direccion, coste, estado, DATE_FORMAT(fecha, '%d/%m/%Y') AS 'fecha'
+                FROM Pedido";
+        $result = $this->db->query($sql);
+        if($result){
+            return $result;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+    }
+
+    public function updateStateOrder(){
+        $sql = "UPDATE Pedido
+                SET estado = '{$this->state}'
+                WHERE id = {$this->id}";
+        if($this->db->query($sql)){
+            return true;
+        }
+        echo("<script>console.log('PHP: " . $this->db->error . "');</script>");
+        return false;
+    }
+
 }
