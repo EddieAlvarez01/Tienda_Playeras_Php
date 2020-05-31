@@ -161,4 +161,45 @@ class PedidoController{
         }
     }
 
+    public function removeFromCart(){
+        Utils::isLogged();
+        if($_GET['id']){
+            $indexDelete = 0;
+            foreach($_SESSION['cart'] as $index => $item){
+                if($item['id'] == $_GET['id']){
+                    $indexDelete = $index;
+                    break;
+                }
+            }
+            unset($_SESSION['cart'][$indexDelete]);
+            $this->hasElements();
+        }
+        header('Location: ' . base_url . 'Pedido/viewCart');
+    }
+
+    //FUNCION PARA VERIFICAR SI EL CARRO SE QUEDA SIN PRODUCTOS PARA ELIMINARLO
+    public function hasElements(){
+        if(!(count($_SESSION['cart']) > 0)){
+            Utils::deleteSession('cart');
+        }
+    }
+
+    public function increaseUnits(){
+        Utils::isLogged();
+        if(isset($_GET['index'])){
+            $_SESSION['cart'][$_GET['index']]['unit']++;
+        }
+        header('Location: ' . base_url . 'Pedido/viewCart');
+    }
+
+    public function decreaseUnits(){
+        Utils::isLogged();
+        if(isset($_GET['index'])){
+            if($_SESSION['cart'][$_GET['index']]['unit'] > 1){
+                $_SESSION['cart'][$_GET['index']]['unit']--;
+            }
+        }
+        header('Location: ' . base_url . 'Pedido/viewCart');
+    }
+
 }
